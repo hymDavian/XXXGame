@@ -10,6 +10,7 @@ class GameStart : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         GDebug.debugAction = (string msg, int lv) =>
         {
             GDebug.ELogLevel glv = (GDebug.ELogLevel)lv;
@@ -22,11 +23,11 @@ class GameStart : MonoBehaviour
             }
         };
 
-        ModuleManager.Register<GameModModule>();//×¢²áÓÎÏ·Ä£Ê½Ä£¿é
+        ModuleManager.Register<GameModModule>();//×¢ï¿½ï¿½ï¿½ï¿½Ï·Ä£Ê½Ä£ï¿½ï¿½
 
 
 
-        ModuleManager.GetModule<GameModModule>().SwitchGameMod(EGameModType.Hall);//³õÊ¼»¯½øÈë´óÌü
+        ModuleManager.GetModule<GameModModule>().SwitchGameMod(EGameModType.Hall);//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     }
 

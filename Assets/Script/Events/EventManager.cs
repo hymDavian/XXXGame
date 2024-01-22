@@ -10,8 +10,16 @@
         /// 游戏模式事件
         /// </summary>
         public static IGameModEvent GameModEvent { get; set; }
-        //public static IMapEvent MapEvent { get; set; }
-        //public static IActorEvents ActorEvent { get; set; }
+
+        /// <summary>
+        /// 地图事件
+        /// </summary>
+        public static IMapEvent MapEvent { get; set; }
+
+        /// <summary>
+        /// 单位事件
+        /// </summary>
+        public static IActorEvents ActorEvent { get; set; }
 
 
 

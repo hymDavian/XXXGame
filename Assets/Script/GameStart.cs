@@ -1,5 +1,7 @@
 using Assets.Script.Events;
+using Assets.Script.Module.Actor;
 using Assets.Script.Module.GameMod;
+using Assets.Script.Module.Map;
 using Assets.Script.Utils;
 using GameFramework.Module;
 using GameFramework.utils;
@@ -16,27 +18,6 @@ class GameStart : MonoBehaviour, IGameStartGlobalEvent
     void Start()
     {
         GameEvents.GameGlobalEvent = this;
-        //NavMesh mesh;
-        //UnityEngine.AI.NavMeshAgent ag;
-        //NavMeshPath path;
-        //ag.CalculatePath(Vector3.zero, path);
-        //Vector3[] vs;
-        //path.GetCornersNonAlloc(vs);//计算路线
-        //ag.GetNearestPointOnMesh;
-        //ag.IsPositionBlocked;
-        //NavMeshBuilder b;b.
-
-
-        //ag.SetDestination();//移动向目标点
-        //ag.Stop();
-        //ag.Resume();//恢复移动
-        //ag.Warp();//瞬移
-        //ag.path.corners;//移动路线
-        //ag.destination = Vector3.positiveInfinity;//设置目标点
-        //ag.Move(ag.desiredVelocity * Time.deltaTime);
-
-
-
         GDebug.debugAction = (string msg, int lv) =>
         {
             GDebug.ELogLevel glv = (GDebug.ELogLevel)lv;
@@ -48,11 +29,11 @@ class GameStart : MonoBehaviour, IGameStartGlobalEvent
                 case GDebug.ELogLevel.Info: Debug.Log(msg); break;
             }
         };
-        
-
-        ModuleManager.Register<GameModModule>();
 
 
+        ModuleManager.Register<GameModModule>();//娓告垙妯″紡
+        ModuleManager.Register<MapModule>();//鍦板浘妯″潡
+        ModuleManager.Register<ActorModule>();//鍗曚綅妯″潡
 
         ModuleManager.GetModule<GameModModule>().SwitchGameMod(EGameModType.Hall);
 

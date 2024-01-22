@@ -74,3 +74,4 @@ Packages/manifest.json
 Packages/packages-lock.json
 ProjectSettings/AutoStreamingSettings.asset
 ProjectSettings/PackageManagerSettings.asset
+ProjectSettings/ProjectVersion.txt

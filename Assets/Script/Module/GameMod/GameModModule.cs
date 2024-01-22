@@ -55,6 +55,8 @@ namespace Assets.Script.Module.GameMod
         /// <param name="mod"></param>
         public void SwitchGameMod(EGameModType mod)
         {
+            if(mod == EGameModType.None) { return; }//不需要切换到空模式，这个模式只用于初始化占位值
+
             if (_cueMod == mod) //处于特殊模式
             {
                 Debug.LogWarning_Date($"已经在{Enum.GetName(typeof(EGameModType), _cueMod)}模式了!");

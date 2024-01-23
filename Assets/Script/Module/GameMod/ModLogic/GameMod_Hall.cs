@@ -19,15 +19,17 @@ namespace Assets.Script.Module.GameMod.ModLogic
 
 
 
-        public override void Init()
+        public override async void Init()
         {
             if (firstInit)
             {
                 firstInit = false;
-                var mapModel = GameObject.Instantiate(Resources.Load<Transform>("Hall"));
-                mapModel.position = Vector3.zero;
                 //todo 具体游戏模式逻辑
-                ModuleManager.GetModule<MapModule>().BuildMap("Hall", mapModel, this.MapCreateTask);
+                var cfg = new MapMeshCreator.BuildMapConfig();
+                cfg.up = 10f; cfg.down = 0f;
+                cfg.width = 300;cfg.length = 300;
+                cfg.segmentX = 150;cfg.segmentY = 150;
+                await ModuleManager.GetModule<MapModule>().BuildMapByTexture("Hall", Resources.Load<Texture2D>("Hall"),new Vector3(0,0,0),cfg, this.MapCreateTask);
             }
             Debug.LogInfo("hall mod !");
         }

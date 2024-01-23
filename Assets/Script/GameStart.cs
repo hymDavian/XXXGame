@@ -13,11 +13,16 @@ class GameStart : MonoBehaviour, IGameStartGlobalEvent
 {
     public event Action OnDrawGizmosCall;
 
+    public Texture2D texture;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        GameEvents.GameGlobalEvent = this;
+        UnityEngine.Analytics.Analytics.enabled = false;
+        UnityEngine.Analytics.Analytics.deviceStatsEnabled = false;
+        UnityEngine.Analytics.Analytics.initializeOnStartup = false;
+        UnityEngine.Analytics.Analytics.limitUserTracking = false;
+        UnityEngine.Analytics.PerformanceReporting.enabled = false;
+
         GDebug.debugAction = (string msg, int lv) =>
         {
             GDebug.ELogLevel glv = (GDebug.ELogLevel)lv;
@@ -29,7 +34,14 @@ class GameStart : MonoBehaviour, IGameStartGlobalEvent
                 case GDebug.ELogLevel.Info: Debug.Log(msg); break;
             }
         };
+    }
 
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        GameEvents.GameGlobalEvent = this;
 
         ModuleManager.Register<GameModModule>();//游戏模式
         ModuleManager.Register<MapModule>();//地图模块

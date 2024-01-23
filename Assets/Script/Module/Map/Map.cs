@@ -50,8 +50,8 @@ namespace Assets.Script.Module.Map
             _path = new NavMeshPath();
             this._rootTra = mapObjRootTra;
             _navMeshData = new NavMeshData();
-            _dataIns = NavMesh.AddNavMeshData(_navMeshData, mapObjRootTra.position, mapObjRootTra.rotation);
             _BuildNavmesh();
+            _dataIns = NavMesh.AddNavMeshData(_navMeshData, Vector3.zero, mapObjRootTra.rotation);
         }
 
         //刷新地图寻路数据

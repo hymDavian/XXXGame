@@ -39,7 +39,18 @@ namespace Assets.Script.Module.Map
 
         public override void Shutdown()
         {
+            try
+            {
+            foreach (var map in _maps.Values)
+            {
+                CloseMap(map.id);
+            }
 
+            }
+            catch (Exception e)
+            {
+                ;
+            }
         }
 
         /// <summary>
@@ -76,6 +87,21 @@ namespace Assets.Script.Module.Map
             OnMapBuildCompeleted?.Invoke(map);
             return map;
 
+        }
+
+        /// <summary>
+        /// 根据指定纹理图案生成地形
+        /// </summary>
+        /// <param name="name">地图名称</param>
+        /// <param name="texture">纹理资源</param>
+        /// <param name="position">生成位置</param>
+        /// <returns></returns>
+        public async Task<MapScene> BuildMapByTexture(string name, Texture2D texture,Vector3 position, MapMeshCreator.BuildMapConfig buildcfg, Func<MapScene, float> createTask = null)
+        {
+            Transform mapTra = await MapMeshCreator.CreateMapObject(texture, buildcfg);
+            mapTra.position = position;
+            MapScene map = await this.BuildMap(name, mapTra,createTask);
+            return map;
         }
 
         /// <summary>
